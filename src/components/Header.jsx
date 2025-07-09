@@ -8,7 +8,7 @@ import { HiMiniUserCircle } from "react-icons/hi2";
 
 function Header() {
   const navigate=useNavigate()
-  const [token, settoken] = useState('')
+  const [token, settoken] = useState('dummyToken')
   const [active, setactive] = useState(false)
   const [menuOpened, setMenuOpened] = useState(false);
 
@@ -61,7 +61,7 @@ setactive(window.scrollY >30)
 
           {/* Cart */}
           <Link to='/cart' className='relative'>
-            <IoCartOutline className='text-xl bg-white text-primary p-1.5 rounded-full' />
+            <IoCartOutline className='text-3xl bg-white text-primary p-1.5 rounded-full' />
             <span className='absolute -top-1 -right-2 bg-red-500 text-white text-xs font-semibold w-5 h-5 flex items-center justify-center rounded-full shadow'>
               0
             </span>
@@ -69,14 +69,25 @@ setactive(window.scrollY >30)
 
           {/* Login */}
           <div className='relative group'>
-            <div onClick={!token && navigate('/')} className=''>
+            <div  className=''>
             {
-              token ? (<div><HiMiniUserCircle className='text-[29px] cursor-pointer'/></div>) : (<button className='bg-blue-50 ring-1 ring-white px-6 py-2.5 rounded-full hover:bg-primary transition duration-300 flex items-center gap-x-2'>
+              token ? (<div><HiMiniUserCircle className='text-[29px] cursor-pointer'/></div>) : (<button  onClick={()=>navigate('/login')} className='bg-blue-50 ring-1 ring-white px-6 py-2.5 rounded-full hover:bg-primary transition duration-300 flex items-center gap-x-2'>
             Login <FaRegUserCircle />
           </button>)
             }
 
             </div>
+            
+           
+            {
+              
+            token &&<>
+            <ul className='bg-white p-1 w-32 ring-slate-900/5 rounded absolute right-0 top-11 hidden group-hover:flex flex-col gap-2 text-[14px] font-[400] shadow-md'>
+  <li className='p-2 text-black rounded-md hover:bg-blue-300 cursor-pointer'>Orders</li>
+  <li className='p-2 text-black rounded-md hover:bg-blue-300 cursor-pointer'>Logout</li>
+</ul>
+
+            </>}
           </div>
           
         </div>

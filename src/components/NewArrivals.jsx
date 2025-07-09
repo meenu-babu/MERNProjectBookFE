@@ -23,8 +23,8 @@ function NewArrivals() {
     setNewArrivals(data.reverse())
   },[books])
   return (
-    <section className='mx-auto max-w-[1440px] px-6 lg:px-12 py-16 bg-white'>
-<Title title1={'New'} title2={'Arrivals'} titleStyles={'pb-10'} paraStyles={'!block'}/>
+    <section className='mx-auto max-w-[1440px] px-6 py-16 bg-white'>
+<Title title1={'New'} title2={'Arrivals'} titleStyles={'pb-4 '} paraStyles={'text-center'}/>
 {/* swiper container */}
 <Swiper
       
@@ -57,7 +57,7 @@ function NewArrivals() {
 
         }}
         modules={[Autoplay, Pagination]}
-        className="h-[455px] sm:h-[488px] xl:h-[499px] mt-5" 
+        className="h-[455px] sm:h-[488px]  xl:h-[499px] mt-5 " 
       >
 
         {newArrivals.map((book)=>(
