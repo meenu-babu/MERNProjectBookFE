@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Title from './Title'
 
 
@@ -8,26 +8,29 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-import {Autoplay,Pagination} from 'swiper/modules';
-import {books} from '../assets/data'
+import { Autoplay, Pagination } from 'swiper/modules';
+
 import Item from './Item';
+import { ShopContext } from '../context/ShopContext';
 
 
-function NewArrivals() {
-
+const NewArrivals=()=> {
+  const { books } = useContext(ShopContext)
   const [newArrivals, setNewArrivals] = useState([])
 
   //extract the first few blocks as new arrivals
-  useEffect(()=>{
-    const data=books.slice(0,7);
+  useEffect(() => {
+    const data = books.slice(0, 7);
     setNewArrivals(data.reverse())
-  },[books])
+  }, [books])
   return (
     <section className='mx-auto max-w-[1440px] px-6 py-16 bg-white'>
-<Title title1={'New'} title2={'Arrivals'} titleStyles={'pb-4 '} paraStyles={'text-center'}/>
-{/* swiper container */}
-<Swiper
-      
+      <Title title1={'New'} title2={'Arrivals'} titleStyles={'pb-4 '} paraStyles={'text-center'}
+       />
+     
+      {/* swiper container */}
+      <Swiper
+
         autoplay={{
           delay: 3500,
           disableOnInteraction: false,
@@ -36,44 +39,44 @@ function NewArrivals() {
           clickable: true,
         }}
         breakpoints={{
-          400:{
-            slidesPerView:2,
-            spaceBetween:30
-          },
-          
-          700:{
-            slidesPerView:3,
-            spaceBetween:30
-          },
-          1024:{
-            slidesPerView:4,
-            spaceBetween:30
+          400: {
+            slidesPerView: 2,
+            spaceBetween: 30
           },
 
-           1200:{
-            slidesPerView:5,
-            spaceBetween:30
+          700: {
+            slidesPerView: 3,
+            spaceBetween: 30
+          },
+          1024: {
+            slidesPerView: 4,
+            spaceBetween: 30
+          },
+
+          1200: {
+            slidesPerView: 5,
+            spaceBetween: 30
           },
 
         }}
         modules={[Autoplay, Pagination]}
-        className="h-[455px] sm:h-[488px]  xl:h-[499px] mt-5 " 
+        className="h-[455px] sm:h-[488px]  xl:h-[499px] mt-5 "
       >
 
-        {newArrivals.map((book)=>(
+        {newArrivals.map((book) => (
           <SwiperSlide key={book._id}>
-            <Item book={book}/>
+            <Item book={book} />
           </SwiperSlide>
         ))
 
         }
 
-        
+
       </Swiper>
 
 
     </section>
- 
+
   )
 }
 

@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Navbar from './Navbar'
 import { CgMenu } from "react-icons/cg";
 import { IoCartOutline } from "react-icons/io5";
 import { FaRegUserCircle } from "react-icons/fa";
 import { HiMiniUserCircle } from "react-icons/hi2";
+import {ShopContext} from "../context/ShopContext"
 
-function Header() {
-  const navigate=useNavigate()
-  const [token, settoken] = useState('dummyToken')
+const Header=()=> {
+  const {navigate,token,setToken}=useContext(ShopContext)
+ 
   const [active, setactive] = useState(false)
   const [menuOpened, setMenuOpened] = useState(false);
 

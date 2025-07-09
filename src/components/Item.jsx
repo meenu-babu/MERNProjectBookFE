@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { TbShoppingBagPlus } from "react-icons/tb";
+import { ShopContext } from '../context/ShopContext';
 const Item=({book})=> {
+    const {currency}=useContext(ShopContext)
   return (
     <div>
         <div className='flex items-center justify-center bg-amber-50 p-6 rounded-3xl overflow-hidden relative group'>
@@ -20,7 +22,7 @@ const Item=({book})=> {
                     {book.category}
 
                 </p>
-                <h5 className='text-[14px] md:text-[15px] mb-1 font-bold text-emerald-600 pr-2'>{book.price}.00</h5>
+                <h5 className='text-[14px] md:text-[15px] mb-1 font-bold text-emerald-600 pr-2'>{currency}{book.price}.00</h5>
 
             </div>
             <p className='line-clamp-2 py-1'>{book.description}</p>
