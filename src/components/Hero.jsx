@@ -21,7 +21,7 @@ function Hero() {
       <div className='mt-6'>
         <Link
           to="/store"
-          className="text-white bg-indigo-600 hover:bg-indigo-700 ring-1 ring-offset-2 ring-indigo-600 p-5  rounded-full font-bold transition-all duration-300 shadow-md"
+          className="text-white bg-amber-800 hover:bg-amber-900 ring-1 ring-offset-2 ring-amber-300 p-4  rounded-full font-bold transition-all duration-300 shadow-md"
         >
           Explore Now
         </Link>
