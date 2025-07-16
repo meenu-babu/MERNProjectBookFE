@@ -25,7 +25,7 @@ const NewArrivals=()=> {
   }, [books])
   return (
     <section className='mx-auto max-w-[1440px] px-6 py-16 bg-white'>
-      <Title title1={'New'} title2={'Arrivals'} titleStyles={'pb-4 '} paraStyles={'text-center'}
+      <Title title1={'New'} title2={'Arrivals'} titleStyles={'pb-4 '} paraStyles={'text-center !block'}
        />
      
       {/* swiper container */}

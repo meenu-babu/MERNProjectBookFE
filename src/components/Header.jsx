@@ -8,7 +8,7 @@ import { HiMiniUserCircle } from "react-icons/hi2";
 import {ShopContext} from "../context/ShopContext"
 
 const Header=()=> {
-  const {navigate,token,setToken}=useContext(ShopContext)
+  const {navigate,token,setToken,getCartCount}=useContext(ShopContext)
  
   const [active, setactive] = useState(false)
   const [menuOpened, setMenuOpened] = useState(false);
@@ -64,7 +64,7 @@ setactive(window.scrollY >30)
           <Link to='/cart' className='relative'>
             <IoCartOutline className='text-3xl bg-white text-primary p-1.5 rounded-full' />
             <span className='absolute -top-1 -right-2 bg-red-500 text-white text-xs font-semibold w-5 h-5 flex items-center justify-center rounded-full shadow'>
-              0
+              {getCartCount()}
             </span>
           </Link>
 

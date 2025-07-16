@@ -8,7 +8,7 @@ const Title=({title1,title2,titleStyles,paraStyles}) =>{
                 {title2}
             </span>
         </h2>
-        <p className={`${paraStyles} text-lg md:text-xl text-gray-600 mb-8 italic `}>Every great adventure starts with a new arrival....Brand-new books. Timeless adventures.....
+        <p className={`${paraStyles} hidden text-lg md:text-xl text-gray-600 mb-8 italic `}>Every great adventure starts with a new arrival....Brand-new books. Timeless adventures.....
         </p>
     </div>
   )

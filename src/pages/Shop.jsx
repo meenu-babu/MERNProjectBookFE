@@ -5,6 +5,8 @@ import { categories } from '../assets/data'
 import { LuSettings2 } from 'react-icons/lu'
 import Title from '../components/Title'
 import { ShopContext } from '../context/ShopContext'
+import Item from '../components/Item'
+import Footer from '../components/Footer'
 
 const Shop = () => {
     const { books } = useContext(ShopContext)
@@ -94,23 +96,46 @@ const Shop = () => {
                 {/* books container */}
                 <div className='mt-8'>
                     {/* title and sort */}
-                    <div>
+                    <div className=' flex items-center justify-between !items-start gap-7 flex-wrap pb-16 max-sm:flex items-center text-center'>
                         <Title title1={'Our'} title2={'Book List'} titleStyles={'pb-0 text-center'} />
-                        <div>
-                            <span>Sort by:</span>
-                            <select className='text-sm p-2.5 outline-none bg-amber-400 text-gray-30 rounded'>
+                        <div className='flex items-center justify-center gap-x-2'>
+                            <span className='hidden sm:flex text-[16px] font-[500]'>Sort by:</span>
+                            <select onChange={(e)=>setsortType(e.target.value)} className='text-sm p-2.5 outline-none bg-amber-900/90 text-white rounded'>
                                 <option value="relevant">Relevant</option>
                                 <option value="low">Low</option>
-                                <option value="high"></option>
+                                <option value="high">High</option>
 
                             </select>
                         </div>
                     </div>
                     {/* books */}
-                    <div></div>
+                    <div className='grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8'>
+                        {getPaginatedBooks().length >0 ? (
+                            getPaginatedBooks().map((book)=>(
+                                <Item book={book} key={book._id}/>
+                            ))
+                        ):(
+                            <p>No books found </p>
+                        )}
+                    </div>
+                </div>
+
+                {/* pagiantion */}
+                <div className='flex items-center justify-center mt-14 mb-10 gap-4'>
+                    {/* previous button*/}
+                    <button disabled={currentPage===1} onClick={()=>setcurrentPage((prev)=>prev-1)} className={`text-[14px] font-[500] bg-amber-900 ring-1 ring-secondary text-white rounded-full py-1 px-3 ${currentPage===1 && "opacity-50 cursor-not-allowed"}`}>Previous</button>
+                    {/* page numbers */}
+                        {Array.from({length:totalPages},(_,index)=>(
+                            <button key={index+1} onClick={()=>setcurrentPage(index+1)} className={`text-[14px] font-[500] bg-amber-900 text-white ring-1 ring-white  rounded-full hover:bg-white hover:text-amber-950 transition-all duration-300 py-1 px-3 ${currentPage===index+1 && "opacity-50 cursor-not-allowed"}`}>{index+1}</button>
+                        ))}
+
+                        {/* next button */}
+                         <button disabled={currentPage===1} onClick={()=>setcurrentPage((prev)=>prev+1)} className={`text-[14px] font-[500] bg-amber-900 ring-1 ring-secondary text-white rounded-full py-1 px-3 ${currentPage===totalPages && "opacity-50 cursor-not-allowed"}`}>Next</button>
                 </div>
             </div>
+              <Footer/>
         </section >
+      
     )
 }
 export default Shop
