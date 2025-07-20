@@ -2,7 +2,9 @@ import React from 'react'
 
 const PlaceOrder = () => {
   return (
-    <div>PlaceOrder</div>
+    <section>
+      <p>Payment added successfully</p>
+    </section>
   )
 }
 

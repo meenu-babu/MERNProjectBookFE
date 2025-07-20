@@ -4,11 +4,13 @@ import { FaMinus, FaPlus } from 'react-icons/fa'
 import Title from '../components/Title'
 import { ShopContext } from '../context/ShopContext'
 import CartTotal from './CartTotal'
+import Footer from '../components/Footer'
+
 
 const Cart = () => {
-  const { books, navigate, currency, cartItems } = useContext(ShopContext)
+  const { books, navigate, currency, cartItems,getCartAmount,updateQuantity} = useContext(ShopContext)
   return (
-    <section className='px-4    '>
+    <section className='px-4 '>
       <div className='pt-28'>
         {/* Title */}
         <Title title1={'Cart'} title2={'List'} titleStyles={'h3'} />
@@ -29,13 +31,13 @@ const Cart = () => {
                         <div>
                           <p className='mb-1.5'>{item.category}</p>
                           <div className='flex items-center ring-1 ring-slate-900/5 rounded-full overflow-hidden bg-white'>
-                            <button className='p-1.5 bg-white rounded-full  shadow-md'><FaMinus className='text-xs' /></button>
+                            <button onClick={()=>updateQuantity(item._id,cartItems[item._id]-1)} className='p-1.5 bg-white rounded-full  shadow-md'><FaMinus className='text-xs' /></button>
                             <p className='px-2'>{cartItems[item._id]}</p>
-                            <button className='p-1.5 bg-white rounded-full  shadow-md'><FaPlus className='text-xs' /></button>
+                            <button onClick={()=>updateQuantity(item._id,cartItems[item._id]+1)} className='p-1.5 bg-white rounded-full  shadow-md'><FaPlus className='text-xs' /></button>
                           </div>
                         </div>
                         <h4 className='text-[16px] md:text-[17px] mb-2 font-bold'>{currency}{item.price}</h4>
-                        <TbTrash className='cursor-pointer text-xl text-red-800'/>
+                        <TbTrash onClick={()=>updateQuantity(item._id,cartItems[item._id],0)} className='cursor-pointer text-xl text-red-800'/>
                       </div>
                     </div>
                   </div>
@@ -47,12 +49,16 @@ const Cart = () => {
         </div>
 
         {/* cart summary */}
-        <div>
-          <div>
+        <div className='flex mt-20'>
+          <div className='w-full sm:w-[450px]'>
             <CartTotal/>
+            <button onClick={()=>navigate('/place-order')} className=' text-[14px] font-[500] bg-blue-900 ring-1 ring-secondary text-white px-4 py-2.5 rounded-full mt-6'>
+Proceed to Checkout
+            </button>
           </div>
         </div>
       </div>
+      <Footer/>
     </section>
   )
 }
