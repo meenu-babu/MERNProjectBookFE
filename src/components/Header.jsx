@@ -8,13 +8,19 @@ import { HiMiniUserCircle } from "react-icons/hi2";
 import {ShopContext} from "../context/ShopContext"
 
 const Header=()=> {
-  const {navigate,token,setToken,getCartCount}=useContext(ShopContext)
+  const {navigate,token,setToken,getCartCount,setcartItems}=useContext(ShopContext)
  
   const [active, setactive] = useState(false)
   const [menuOpened, setMenuOpened] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpened(prev => !prev);
+  }
+  const logout=()=>{
+    navigate('/login')
+    localStorage.removeItem('token')
+    setToken('')
+    setcartItems({})
   }
   useEffect(()=>{
     const handleScroll=()=>{
@@ -84,8 +90,8 @@ setactive(window.scrollY >30)
               
             token &&<>
             <ul className='bg-white p-1 w-32 ring-slate-900/5 rounded absolute right-0 top-11 hidden group-hover:flex flex-col gap-2 text-[14px] font-[400] shadow-md'>
-  <li className='p-2 text-black rounded-md hover:bg-blue-300 cursor-pointer'>Orders</li>
-  <li className='p-2 text-black rounded-md hover:bg-blue-300 cursor-pointer'>Logout</li>
+  <li onClick={()=>navigate('/orders')} className='p-2 text-black rounded-md hover:bg-blue-300 cursor-pointer'>Orders</li>
+  <li onClick={logout} className='p-2 text-black rounded-md hover:bg-blue-300 cursor-pointer'>Logout</li>
 </ul>
 
             </>}
